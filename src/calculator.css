@@ -1,0 +1,25 @@
+.resultContainer {
+  width: 100px;
+}
+
+.calculatorContainer {
+  width: 250px;
+}
+
+.tipBtnContainer {
+  flex-direction: row;
+  width: 100%;
+}
+.percentBtn {
+  width: 100px;
+  background-color: lightcyan;
+  color: black;
+}
+.amountInput {
+  width: 200px;
+  height: 40px;
+  background-color: lightblue;
+  color: black;
+  border-width: 5px;
+  border-radius: 10px;
+}
