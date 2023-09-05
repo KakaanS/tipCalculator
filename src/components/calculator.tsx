@@ -1,9 +1,10 @@
 import { useState } from "react";
+
+import Results from "./results";
+import Buttons from "./Buttons";
 import "./calculator.css";
 
 function Calculator() {
-  // skapa:
-
   const [amount, setAmount] = useState<number | string>("");
   const [tipPercent, setTipPercent] = useState<number | string>(0);
   const [numberOfPeople, setAmountOfPeople] = useState<number | string>("");
@@ -22,6 +23,11 @@ function Calculator() {
   const handleAmountOfPeople = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmountOfPeople(e.target.value);
     calculateTip(amount, tipPercent, e.target.value);
+  };
+
+  const customTip = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTipPercent(e.target.value);
+    calculateTip(amount, e.target.value, numberOfPeople);
   };
 
   const calculateTip = (
@@ -56,26 +62,7 @@ function Calculator() {
           placeholder="Enter amount"
           onChange={handleAmountChange}
         />
-        <div className="tipBtnContainer">
-          <button className="percentBtn" onClick={handleTipClick(5)}>
-            5%
-          </button>
-          <button className="percentBtn" onClick={handleTipClick(10)}>
-            10%
-          </button>
-          <button className="percentBtn" onClick={handleTipClick(15)}>
-            15%
-          </button>
-          <button className="percentBtn" onClick={handleTipClick(25)}>
-            25%
-          </button>
-          <button className="percentBtn" onClick={handleTipClick(50)}>
-            50%
-          </button>
-          <button className="percentBtn" onClick={handleTipClick(0)}>
-            Custom
-          </button>
-        </div>
+        <Buttons customTip={customTip} handleTipClick={handleTipClick} />
         <input
           className="amountInput"
           type="number"
@@ -84,16 +71,12 @@ function Calculator() {
           onChange={handleAmountOfPeople}
         />
       </div>
-      <div className="resultContainer">
-        <h2 className="tipAmount">Tip Amount /person:</h2>
-        <p>{tipAmount}/person</p>
-
-        <h2 className="totalAmount">Total amount/person:</h2>
-        <p>{totalAmount}/person</p>
-
-        <button className="resetBtn" onClick={handleReset}>
-          Reset
-        </button>
+      <div>
+        <Results
+          tipAmount={tipAmount}
+          totalAmount={totalAmount}
+          handleReset={handleReset}
+        />
       </div>
     </div>
   );

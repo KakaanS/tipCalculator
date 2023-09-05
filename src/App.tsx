@@ -1,11 +1,13 @@
 import "./App.css";
-import Calculator from "./calculator";
+import Calculator from "./components/calculator";
 
 function App() {
   return (
     <>
-      <h1>Tip Calculator</h1>
-      <Calculator />
+      <div className="app">
+        <h1>Tip Calculator</h1>
+        <Calculator />
+      </div>
     </>
   );
 }
